@@ -12,9 +12,9 @@ export const useFetchProducts = (
   retryDelay = 1000
 ) => {
   const [data, setData] = useState([]);
-  const [articlesData, setArticlesData] = useState<{ [key: string]: Article }>(
-    {}
-  );
+  const [articlesData, setArticlesData] = useState<{
+    [key: string]: Partial<Article>;
+  }>({});
   const [error, setError] = useState(null);
 
   const retryCounter = useRef(0);

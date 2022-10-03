@@ -165,7 +165,7 @@ export default function ProductList() {
   }, []);
 
   const allowToRegisterSale = useCallback(
-    (articles: Article[], articlesData: { [p: string]: Article }) => {
+    (articles: Article[], articlesData: { [p: string]: Partial<Article> }) => {
       return articles.every((article) => {
         return (
           (articlesData[article.id]?.amountInStock || 0) >=

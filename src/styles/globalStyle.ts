@@ -78,6 +78,9 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+  h1 {
+    color: #213547;
+  }
 }
 `;
 
