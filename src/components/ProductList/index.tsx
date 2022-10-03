@@ -250,7 +250,10 @@ export default function ProductList() {
                     </Stock>
                     {(article?.amountRequired || 0) >
                     (articlesData[article.id]?.amountInStock || 0) ? (
-                      <NotEnough aria-label={NOT_ENOUGH_STOCK_TEXT}>
+                      <NotEnough
+                        aria-label={NOT_ENOUGH_STOCK_TEXT}
+                        onClick={handleRefresh}
+                      >
                         X
                       </NotEnough>
                     ) : (
