@@ -1,7 +1,5 @@
-import { Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
-import Home from './pages/Home';
-import NotFound from './pages/NotFound';
+import { AppRouter } from './router';
 
 import GlobalStyle from './styles/globalStyle';
 
@@ -19,14 +17,7 @@ export default function App() {
   return (
     <Main>
       <GlobalStyle />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="products" element={<div>Sample</div>} />
-        <Route path="product/:productId" element={<div>Sample</div>} />
-        <Route path="sales" element={<div>Sample</div>} />
-        <Route path="sales/:saleId" element={<div>Sample</div>} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <AppRouter />
     </Main>
   );
 }
