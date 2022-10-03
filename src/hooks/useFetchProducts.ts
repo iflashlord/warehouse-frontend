@@ -1,4 +1,4 @@
-import axios, { CanceledError } from 'axios';
+import axios, { AxiosError, AxiosResponse, CanceledError } from 'axios';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { x } from 'vitest/dist/global-fe52f84b';
 import { Article } from '../model/article.types';
@@ -53,14 +53,13 @@ export const useFetchProducts = (
             });
         });
 
-        //TODO: change any s to proper types
-        fetchArticles.forEach((result: any) => {
+        fetchArticles.forEach((result: Promise<AxiosResponse<Article>[]>) => {
           return result
-            .then((...res: any) => {
-              return res.map((items: any) => {
-                return items.map((item: any) => {
+            .then((...res) => {
+              return res.map((items) => {
+                return items.map((item) => {
                   const data = item.data;
-                  const articleId = data.id;
+                  const articleId = String(data.id);
                   const amountInStock = data.amountInStock;
                   const dataSet = {
                     amountInStock,
@@ -73,8 +72,8 @@ export const useFetchProducts = (
                 });
               });
             })
-            .catch((err: any) => {
-              throw new Error(err.statusText);
+            .catch((err: AxiosError) => {
+              throw new Error(err.message);
             });
         });
       })
